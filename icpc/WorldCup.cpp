@@ -20,82 +20,24 @@ string cast(int p) {
       s.append("0");
     }
   }
-
   return s;
 }
 
+int possible(int a, int b, int c, int d) {
+  return (a < 10) && (a > 0) && (b < 10) && (b > 0) && (c < 10) && (c > 0) && (d < 10) && (d > 0);
+}
 //a, b, c, d four teams
 //a vs b, a vs c , a vs d, b vs c, b vs d, c vs d
 int main() {
-  vector<string> cas;
-  unordered_map<int, int> outcome;
-  for (int i = 0; i < 729; i++) {
-    string result = cast(i);
-    vector<int> score;
-    int a = 0;
-    int b = 0;
-    int c = 0;
-    int d = 0;
-    if (result[0] == '0') {b += 3;}
-    else if (result[0] == '1') {a +=1 ; b+= 1;}
-    else {a+=3;}
-    if (result[1] == '0') {c += 3;}
-    else if (result[0] == '1') {a +=1 ; c+= 1;}
-    else {a+=3;}
-    if (result[2] == '0') {d += 3;}
-    else if (result[0] == '1') {a +=1 ; d+= 1;}
-    else {a+=3;}
-    if (result[3] == '0') {c += 3;}
-    else if (result[0] == '1') {c +=1 ; b+= 1;}
-    else {b+=3;}
-    if (result[4] == '0') {d += 3;}
-    else if (result[0] == '1') {d +=1 ; b+= 1;}
-    else {b+=3;}
-    if (result[5] == '0') {d += 3;}
-    else if (result[0] == '1') {c +=1 ; d+= 1;}
-    else {c+=3;}
-    score.push_back(a);
-    score.push_back(b);
-    score.push_back(c);
-    score.push_back(d);
-    sort(score.begin(), score.begin() + 4);
-    int s = score[3] * 1000 + score[2] * 100 + score[1] * 10 + score[0];
-  //  cout << s << endl;
-    if (outcome.find(s) == outcome.end()) {
-      outcome[s] = 1;
-    }
-    else {
-      outcome[s] ++;
+  int output[10][10][10][10];
+  for(int a = 0; a < 10; a++) {
+    for(int b = 0; b < 10; b++) {
+      for(int c = 0; c < 10; c++) {
+        for(int d = 0; d < 10; d++) {
+          output[a][b][c][d] = -1;
+        }
+      }
     }
   }
-
-  unordered_map<int, int>::iterator it;
-  for (it = outcome.begin(); it != outcome.end(); it++) {
-    cout << it->first << " " <<  it-> second <<  endl;
-  }
-  int n;
-  cin >> n;
-  for (int i = 0; i < n ; i++) {
-    int a;
-    vector<int> score;
-    score.clear();
-    for (int j = 0; j < 4 ; j++) {
-        cin >> a;
-        score.push_back(a);
-    }
-    sort(score.begin(), score.begin() + 4);
-    int s = score[3] * 1000 + score[2] * 100 + score[1] * 10 + score[0];
-    cout << s << endl;
-    if (outcome.find(s) == outcome.end()) {
-      cout << "Case #" << i + 1 << ": Wrong Scoreboard" << endl;
-    }
-    else if (outcome[s] > 24) {
-      cout << "Case #" << i + 1 << ": No" << endl;
-    }
-    else {
-      cout << "Case #" << i + 1 << ": Yes" << endl;
-    }
-  }
-
 
 }
