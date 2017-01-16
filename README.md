@@ -1,3 +1,2 @@
 # icpc
-algorithm contest pract
-i
+Algorithm contest practice
